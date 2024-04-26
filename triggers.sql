@@ -23,3 +23,24 @@ BEGIN
 END$$
 DELIMITER ;
 
+-- segundo trigger
+
+DELIMITER $$
+CREATE TRIGGER verificar_ventas_asociadas_cliente
+BEFORE DELETE ON Clientes
+FOR EACH ROW
+BEGIN
+    DECLARE ventas_count INT;
+
+    -- Verificar si hay ventas asociadas al cliente que se está intentando eliminar
+    SELECT COUNT(*) INTO ventas_count
+    FROM Ventas
+    WHERE id_cliente = OLD.id_cliente;
+
+    -- Si hay ventas asociadas, cancelar la eliminación y mostrar un mensaje de error
+    IF ventas_count > 0 THEN
+        SIGNAL SQLSTATE '45000'
+        SET MESSAGE_TEXT = 'No se puede eliminar este cliente porque tiene ventas asociadas.';
+    END IF;
+END$$
+DELIMITER ;
