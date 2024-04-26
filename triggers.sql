@@ -1,4 +1,4 @@
-use coderhouse;
+use sistema_ventas;
 
 DELIMITER $$
 CREATE TRIGGER actualizar_cantidad_despues_venta
