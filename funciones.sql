@@ -1,4 +1,4 @@
-use coderhouse;
+use sistema_ventas;
 
 DELIMITER $$
 CREATE FUNCTION obtener_nombre_precio_producto(id_parametro INT)
