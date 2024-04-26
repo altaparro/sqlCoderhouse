@@ -1,4 +1,4 @@
-use coderhouse;
+use sistema_ventas;
 
 DELIMITER $$
 CREATE PROCEDURE ordenar_por_id(IN tabla_nombre VARCHAR(255), IN orden VARCHAR(4))
